@@ -18,33 +18,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-
-      ),
-      appBar: AppBar(
-        title: Text('INS'),
-      ),
-      drawer: Drawer(
+      body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: EdgeInsets.all(20),
               height: 200,
-              color: Colors.black12,
-              child: Column(
-
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Murod Turaev', style: TextStyle(color: Colors.blue),),
-                  Text('murod.turaev@gmail.com', style: TextStyle(color: Colors.blue),),
-                ],
-              ),
+              color: Colors.blue,
+            ),
+            Container(
+              height: 200,
+              color: Colors.white,
+            ),
+            Container(
+              height: 200,
+              color: Colors.grey,
+            ),
+            Container(
+              height: 200,
+              color: Colors.green,
+            ),
+            Container(
+              height: 200,
+              color: Colors.red,
             )
           ],
         ),
       ),
+      appBar: AppBar(
+        title: Text('INS'),
+      ),
+
     );
   }
 }
