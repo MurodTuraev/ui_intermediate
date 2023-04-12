@@ -18,48 +18,32 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GridView.count(
-        crossAxisCount: 2,
+      body: PageView(
         children: [
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
-          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          Container(
+            color: Colors.grey,
+            child: Center(
+              child: Text('Birinchi saxifa'),
+            ),
+          ),
+          Container(
+            color: Colors.green,
+            child: Center(
+              child: Text('Ikkinchi saxifa'),
+            ),
+          ),
+          Container(
+            color: Colors.purple,
+            child: Center(
+              child: Text('Uchinchi saxifa'),
+            ),
+          )
         ],
       ),
       appBar: AppBar(
         title: Text('INS'),
       ),
 
-    );
-  }
-
-  Widget _itemList({title, image}){
-    return Container(
-      height: 107,
-      width: 107,
-      color: Colors.grey,
-      margin: EdgeInsets.all(5),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image(
-            width: 70,
-            height: 70,
-            fit: BoxFit.cover,
-            image: AssetImage(image),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(title)
-        ],
-      ),
     );
   }
 }
