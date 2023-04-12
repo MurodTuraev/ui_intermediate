@@ -18,36 +18,47 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 200,
-              color: Colors.blue,
-            ),
-            Container(
-              height: 200,
-              color: Colors.white,
-            ),
-            Container(
-              height: 200,
-              color: Colors.grey,
-            ),
-            Container(
-              height: 200,
-              color: Colors.green,
-            ),
-            Container(
-              height: 200,
-              color: Colors.red,
-            )
-          ],
-        ),
+      body: ListView(
+        children: [
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+          _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
+        ],
       ),
       appBar: AppBar(
         title: Text('INS'),
       ),
 
+    );
+  }
+
+  Widget _itemList({title, image}){
+    return Container(
+      height: 107,
+      width: 107,
+      color: Colors.grey,
+      margin: EdgeInsets.all(5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image(
+            width: 70,
+            height: 70,
+            fit: BoxFit.cover,
+            image: AssetImage(image),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Text(title)
+        ],
+      ),
     );
   }
 }
