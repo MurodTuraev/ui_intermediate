@@ -18,7 +18,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: GridView.count(
+        crossAxisCount: 2,
         children: [
           _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
           _itemList(title: 'BMT', image: 'assets/images/images.jpeg'),
