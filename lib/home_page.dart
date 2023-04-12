@@ -18,102 +18,63 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('INS demo'),
+        title: Text('Messages'),
       ),
-      drawer: Drawer(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                padding: EdgeInsets.all(20),
-                color: Colors.lightBlue,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(50),
-                        child: Image(
-                          image: AssetImage('assets/images/images.jpeg'), height: 100, width: 100,
-                        ),
-                      ),
-                      padding: EdgeInsets.only(bottom: 10),
-                    ),
-                    Text('Murod Turaev', style: TextStyle(fontSize: 20, color: Colors.white),),
-                    Text('abc@gmail.com', style: TextStyle(fontSize: 20, color: Colors.white),),
-                  ],
-                ),
+      body: ListView(
+        children: [
+          _itemList(name: 'Murod', date: '20:18', data: 'Bugun yigilish bor'),
+          _itemList(name: 'Shaxzodbek', date: '12:32', data: 'Ishlar yaxshimi?'),
+          _itemList(name: 'Jonibek', date: '09:45', data: 'Tugilgan kuning bilan'),
+          _itemList(name: 'Aziz', date: '01:13', data: 'Bugun boramiz'),
+          _itemList(name: 'Nodir', date: '22:01', data: 'Otgan darsni aytib yubor'),
+        ],
+
+      ),
+    );
+  }
+
+  Widget _itemList({name, date, data}){
+    return Container(
+      padding: EdgeInsets.all(5),
+      // height: 300,
+      width: 60,
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            padding: EdgeInsets.all(15),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(50),
+              child: Image(
+                image: AssetImage('assets/images/images.jpeg'),
+                height: 50,
+                width: 50,
               ),
+          )),
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: 290,
+                  child: Row(
+                    children: [
+                      Text(name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                      Text(date, style: TextStyle(fontSize: 12),),
+                    ],
+                  ),
+                ),
+                Text(data, style: TextStyle(fontSize: 16),)
+              ],
             ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                color: Colors.white,
-                child: Column(
-                  children: [
-                    TextButton(
-                      onPressed: (){},
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            child: Icon(
-                              Icons.home
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            child: Text('Home', style: TextStyle(fontSize: 18),),
-                          )
-                        ],
-                      ),
-
-                    ),
-                    TextButton(
-                      onPressed: (){},
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            child: Icon(
-                                Icons.person
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            child: Text('Profile', style: TextStyle(fontSize: 18),),
-                          )
-                        ],
-                      ),
-
-                    ),
-                    TextButton(
-                      onPressed: (){},
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            child: Icon(
-                                Icons.people
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.all(5),
-                            child: Text('About us', style: TextStyle(fontSize: 18),),
-                          )
-                        ],
-                      ),
-
-                    ),
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
+          ),
+          Container(
+            child: Icon(
+              Icons.chevron_right
+            ),
+          )
+        ],
       ),
     );
   }
