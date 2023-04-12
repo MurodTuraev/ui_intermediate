@@ -13,76 +13,38 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  PageController _pageController = new PageController();
-  int _selectedPage = 0;
-
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _pageController = PageController();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (int index){
-          setState(() {
-            _selectedPage = index;
-          });
-        },
+    return DefaultTabController(length: 2, child: Scaffold(
+      appBar: AppBar(
+        title: Text('INS Demo'),
+        bottom: TabBar(
+          tabs: [
+            Tab(icon: Icon(Icons.home),text: 'Home',),
+            Tab(icon: Icon(Icons.school),text: 'School',),
+          ],
+        ),
+      ),
+      body: TabBarView(
         children: [
           Container(
-            color: Colors.grey,
+            color: Colors.green,
             child: Center(
-              child: Text('Birinchi saxifa'),
+              child: Text('Birinchi sahifa', style: TextStyle(color: Colors.white, fontSize: 24),),
             ),
           ),
           Container(
             color: Colors.green,
             child: Center(
-              child: Text('Ikkinchi saxifa'),
-            ),
-          ),
-          Container(
-            color: Colors.purple,
-            child: Center(
-              child: Text('Uchinchi saxifa'),
+              child: Text('Ikkinchi sahifa', style: TextStyle(color: Colors.redAccent, fontSize: 24),),
             ),
           )
         ],
       ),
-      appBar: AppBar(
-        title: Text('INS'),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.purpleAccent),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Message', backgroundColor: Colors.purpleAccent),
-          BottomNavigationBarItem(icon: Icon(Icons.ondemand_video_outlined), label: 'Video', backgroundColor: Colors.purpleAccent),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Notification', backgroundColor: Colors.purpleAccent),
-        ],
-        currentIndex: _selectedPage,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.black54,
-        backgroundColor: Colors.black,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        onTap: (int index){
-          setState(() {
-            _selectedPage = index;
-            _pageController.animateToPage(index, duration: Duration(microseconds: 200), curve: Curves.easeIn);
-          });
-        },
-      ),
+    ),
     );
+
   }
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<PageController>('_pageController', _pageController));
-  }
+
 }
