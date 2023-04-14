@@ -13,37 +13,51 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  final _formKey = GlobalKey<FormState>();
+  String _email='', _password='';
+  void _doSignIn(){
+    // print(_formKey.currentState.mounted);
+    if(_formKey.currentState!.validate()){
+      _formKey.currentState!.save();
+      print('Welcome');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('INS demo'),
       ),
-      backgroundColor: Colors.grey,
-      body: Container(
-        padding: EdgeInsets.all(20),
+      backgroundColor: Colors.white,
+      body: Form(
+        key: _formKey,
         child: Column(
           children: [
-            Container(
-              height: 45,
-              decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(100)
-              ),
-              width: double.infinity,
-              child: TextField(
-                onChanged: (value){},
-                style: TextStyle(fontSize: 15, color: Colors.black54),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+              child: TextFormField(
                 decoration: InputDecoration(
-                  hintText: 'Phone',
-                  hintStyle: TextStyle(color: Colors.grey),
-                  border: InputBorder.none,
-                  prefixIcon: Icon(
-                    Icons.phone_iphone,
-                    color: Colors.grey,
-                  )
+                  labelText: 'Email'
                 ),
+                validator: (input) => !input.toString().contains('@') ? 'Notogri kiriting' : null,
+                onSaved: (input) => _email=input.toString(),
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    labelText: 'Password'
+                ),
+                validator: (input) => input.toString().length<6 ? 'parol uzunligi 6 dan kop bolishi kerak' : null,
+                onSaved: (input) => _password=input.toString(),
+              ),
+            ),
+            TextButton(
+              onPressed: (){
+                _doSignIn();
+              },
+              child: Text('Sign in', style: TextStyle(color: Colors.redAccent, fontSize: 18),) ,
             )
           ],
         ),
