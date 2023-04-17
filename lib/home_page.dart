@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _formKey = GlobalKey<FormState>();
-  String _email='', _password='';
+  String _email='', _password='', _name='';
   void _doSignIn(){
     // print(_formKey.currentState.mounted);
     if(_formKey.currentState!.validate()){
@@ -36,6 +36,16 @@ class _HomePageState extends State<HomePage> {
               Container(
                 child: Center(
                     child: Text('Instagram', style: TextStyle(fontSize: 32, color: Colors.black),)
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'Name'
+                  ),
+                  validator: (input) => input.toString().length < 4 ? 'NO': null,
+                  onSaved: (input) => _name=input.toString(),
                 ),
               ),
               Padding(
@@ -64,18 +74,20 @@ class _HomePageState extends State<HomePage> {
                 // height: 50,
                 color: Colors.blue,
                 child: TextButton(
-                  onPressed: (){},
-                  child: Text('Log In', style: TextStyle(backgroundColor: Colors.blue, color: Colors.white, fontSize: 18),),
+                  onPressed: (){
+                    _doSignIn();
+                  },
+                  child: Text('Sign Up', style: TextStyle(backgroundColor: Colors.blue, color: Colors.white, fontSize: 18),),
                 ),
               ),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Don't have an accaunt?", style: TextStyle(color: Colors.black38),),
+                    Text("Already have an accaunt?", style: TextStyle(color: Colors.black38),),
                     TextButton(
                       onPressed: (){},
-                      child: Text("Sign up"),
+                      child: Text("Log in"),
                     )
                   ],
                 ),
