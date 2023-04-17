@@ -18,46 +18,116 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('INS demo'),
-      ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black54,
       body: Center(
-        child: Text('Home Page', style: TextStyle(color: Colors.green, fontSize: 32),),
-      ),
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        animatedIconTheme: IconThemeData(size: 22),
-        overlayColor: Colors.black,
-        overlayOpacity: 0.5,
-        onOpen: ()=> print('Open'),
-        onClose: ()=> print('Close'),
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        shape: CircleBorder(),
-        children: [
-          SpeedDialChild(
-            child: Icon(Icons.accessibility),
-            backgroundColor: Colors.redAccent,
-            label: 'Birinchi',
-            labelStyle: TextStyle(fontSize: 20),
-            onTap: ()=> print('Birinchi')
-          ),
-          SpeedDialChild(
-              child: Icon(Icons.podcasts),
-              backgroundColor: Colors.green,
-              label: 'Ikkinchi',
-              labelStyle: TextStyle(fontSize: 20),
-              onTap: ()=> print('Ikkinchi')
-          ),
-          SpeedDialChild(
-              child: Icon(Icons.face),
-              backgroundColor: Colors.grey,
-              label: 'Uchinchi',
-              labelStyle: TextStyle(fontSize: 20),
-              onTap: ()=> print('Uchinchi')
-          )
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  margin: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22.5),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/images.jpeg'),
+                        fit: BoxFit.cover,
+                      ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22.5),
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          colors: [
+                            Colors.white.withOpacity(0.9),
+                            Colors.white.withOpacity(0.8),
+                            Colors.white.withOpacity(0.4),
+                            Colors.white.withOpacity(0.2),
+                          ],
+                        )
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 160, left: 50),
+                  child: Text('PDP Online', style: TextStyle(color: Colors.black, fontSize: 28),),
+                )
+              ],
+            ),
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  margin: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22.5),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/images.jpeg'),
+                        fit: BoxFit.cover,
+                      ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22.5),
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          colors: [
+                            Colors.white.withOpacity(0.9),
+                            Colors.white.withOpacity(0.8),
+                            Colors.white.withOpacity(0.4),
+                            Colors.white.withOpacity(0.2),
+                          ],
+                        )
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 160, left: 50),
+                  child: Text('PDP Online', style: TextStyle(color: Colors.black, fontSize: 28),),
+                )
+              ],
+            ),
+            Stack(
+              children: [
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  margin: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22.5),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/images.jpeg'),
+                        fit: BoxFit.cover,
+                      ),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22.5),
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          colors: [
+                            Colors.white.withOpacity(0.9),
+                            Colors.white.withOpacity(0.8),
+                            Colors.white.withOpacity(0.4),
+                            Colors.white.withOpacity(0.2),
+                          ],
+                        )
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(top: 160, left: 50),
+                  child: Text('PDP Online', style: TextStyle(color: Colors.black, fontSize: 28),),
+                )
+              ],
+            ),
+
+          ],
+        ),
       ),
     );
   }
