@@ -17,14 +17,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
   late AnimationController _controller;
-  late Animation<double> _animation ;
+  late Animation _animation ;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _controller = AnimationController(vsync: this, duration: Duration(microseconds: 1200));
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+    _animation = Tween<Size>(
+      begin: Size(100.0,100.0),
+      end: Size(150.0,150.0),
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.bounceIn)
+    );
+
+    _controller.addStatusListener((status) {
+      if(status==AnimationStatus.completed){
+        _controller.repeat();
+      }
+    });
   }
 
   @override
@@ -38,12 +49,12 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: FadeTransition(
-          opacity: _animation,
-          child: Container(
-            width: 200,
-            height: 200,
-            child: Image.asset('assets/images/images.jpeg'),
+        child: AnimatedBuilder(
+          animation: _animation,
+          builder: (ctx,ch)=>Container(
+            height: _animation.value.height,
+            width: _animation.value.width,
+            child: Image.asset('assets/images/heart.jpg'),
           ),
         )
       ),
