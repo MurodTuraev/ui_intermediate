@@ -14,119 +14,74 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
+  final _formKey = GlobalKey<FormState>();
+  String _email='', _password='';
+  void _doSignIn(){
+    // print(_formKey.currentState.mounted);
+    if(_formKey.currentState!.validate()){
+      _formKey.currentState!.save();
+      print('Welcome');
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black54,
+      backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  margin: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22.5),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/images.jpeg'),
-                        fit: BoxFit.cover,
-                      ),
-                  ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22.5),
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomRight,
-                          colors: [
-                            Colors.white.withOpacity(0.9),
-                            Colors.white.withOpacity(0.8),
-                            Colors.white.withOpacity(0.4),
-                            Colors.white.withOpacity(0.2),
-                          ],
-                        )
-                    ),
-                  ),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                child: Center(
+                    child: Text('Instagram', style: TextStyle(fontSize: 32, color: Colors.black),)
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 160, left: 50),
-                  child: Text('PDP Online', style: TextStyle(color: Colors.black, fontSize: 28),),
-                )
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  margin: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22.5),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/images.jpeg'),
-                        fit: BoxFit.cover,
-                      ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Email'
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22.5),
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomRight,
-                          colors: [
-                            Colors.white.withOpacity(0.9),
-                            Colors.white.withOpacity(0.8),
-                            Colors.white.withOpacity(0.4),
-                            Colors.white.withOpacity(0.2),
-                          ],
-                        )
-                    ),
-                  ),
+                  validator: (input) => !input.toString().contains('@') ? 'NO': null,
+                  onSaved: (input) => _email=input.toString(),
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 160, left: 50),
-                  child: Text('PDP Online', style: TextStyle(color: Colors.black, fontSize: 28),),
-                )
-              ],
-            ),
-            Stack(
-              children: [
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  margin: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22.5),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/images.jpeg'),
-                        fit: BoxFit.cover,
-                      ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      labelText: 'Password'
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22.5),
-                        gradient: LinearGradient(
-                          begin: Alignment.bottomRight,
-                          colors: [
-                            Colors.white.withOpacity(0.9),
-                            Colors.white.withOpacity(0.8),
-                            Colors.white.withOpacity(0.4),
-                            Colors.white.withOpacity(0.2),
-                          ],
-                        )
-                    ),
-                  ),
+                  validator: (input) => input.toString().length<4 ? 'Kamida 4 ta belgi bolishi kerak': null,
+                  onSaved: (input) => _password=input.toString(),
                 ),
-                Container(
-                  padding: EdgeInsets.only(top: 160, left: 50),
-                  child: Text('PDP Online', style: TextStyle(color: Colors.black, fontSize: 28),),
-                )
-              ],
-            ),
-
-          ],
+              ),
+              Container(
+                margin: EdgeInsets.all(30),
+                width: double.infinity,
+                // height: 50,
+                color: Colors.blue,
+                child: TextButton(
+                  onPressed: (){},
+                  child: Text('Log In', style: TextStyle(backgroundColor: Colors.blue, color: Colors.white, fontSize: 18),),
+                ),
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Don't have an accaunt?", style: TextStyle(color: Colors.black38),),
+                    TextButton(
+                      onPressed: (){},
+                      child: Text("Sign up"),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
