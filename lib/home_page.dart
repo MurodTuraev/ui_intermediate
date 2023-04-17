@@ -1,4 +1,6 @@
+// import 'dart:html';
 import 'dart:io';
+// import 'dart:js';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,88 +15,44 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final _formKey = GlobalKey<FormState>();
-  String _email='', _password='', _name='';
-  void _doSignIn(){
-    // print(_formKey.currentState.mounted);
-    if(_formKey.currentState!.validate()){
-      _formKey.currentState!.save();
-      print('Welcome');
-    }
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+  late AnimationController _controller;
+  late Animation<double> _animation ;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: Duration(microseconds: 1200));
+    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controller.dispose();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                child: Center(
-                    child: Text('Instagram', style: TextStyle(fontSize: 32, color: Colors.black),)
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      labelText: 'Name'
-                  ),
-                  validator: (input) => input.toString().length < 4 ? 'NO': null,
-                  onSaved: (input) => _name=input.toString(),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    labelText: 'Email'
-                  ),
-                  validator: (input) => !input.toString().contains('@') ? 'NO': null,
-                  onSaved: (input) => _email=input.toString(),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      labelText: 'Password'
-                  ),
-                  validator: (input) => input.toString().length<4 ? 'Kamida 4 ta belgi bolishi kerak': null,
-                  onSaved: (input) => _password=input.toString(),
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(30),
-                width: double.infinity,
-                // height: 50,
-                color: Colors.blue,
-                child: TextButton(
-                  onPressed: (){
-                    _doSignIn();
-                  },
-                  child: Text('Sign Up', style: TextStyle(backgroundColor: Colors.blue, color: Colors.white, fontSize: 18),),
-                ),
-              ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Already have an accaunt?", style: TextStyle(color: Colors.black38),),
-                    TextButton(
-                      onPressed: (){},
-                      child: Text("Log in"),
-                    )
-                  ],
-                ),
-              )
-            ],
+        child: FadeTransition(
+          opacity: _animation,
+          child: Container(
+            width: 200,
+            height: 200,
+            child: Image.asset('assets/images/images.jpeg'),
           ),
-        ),
+        )
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.play_arrow),
+        onPressed: (){
+          _controller.forward();
+        },
       ),
     );
   }
