@@ -23,19 +23,18 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(microseconds: 1200));
-    _animation = Tween<Size>(
-      begin: Size(100.0,100.0),
-      end: Size(150.0,150.0),
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 1200));
+    _animation = Tween(
+      begin: 200.0,
+      end: 100.0
     ).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.bounceIn)
-    );
-
-    _controller.addStatusListener((status) {
+      CurvedAnimation(parent: _controller, curve: Interval(0.0,1.0, curve: Curves.elasticIn))
+    )..addStatusListener((status) {
       if(status==AnimationStatus.completed){
-        _controller.repeat();
+        _controller.repeat(reverse: true);
       }
     });
+
   }
 
   @override
@@ -51,10 +50,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
       body: Center(
         child: AnimatedBuilder(
           animation: _animation,
-          builder: (ctx,ch)=>Container(
-            height: _animation.value.height,
-            width: _animation.value.width,
-            child: Image.asset('assets/images/heart.jpg'),
+          builder: (ctx, ch) => Container(
+            margin: EdgeInsets.only(top: _animation.value, left: 125),
+            width: 200,
+            height: 200,
+            child: Image.asset('assets/images/ball.jpg'),
           ),
         )
       ),

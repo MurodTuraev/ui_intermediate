@@ -29,5 +29,6 @@ flutter:
   assets:
      - assets/images/images.jpeg
      - assets/images/heart.jpg
+     - assets/images/ball.jpg
   #   - images/a_dot_ham.jpeg
 
